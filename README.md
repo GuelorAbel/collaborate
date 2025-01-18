@@ -1,6 +1,9 @@
 # Collaborate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+Ce projet est une application de vente de vêtements basé sur la version 18.2.1 du framework Angular.  
+C'est une collaboration de deux développeurs :  
+- Guelor Abel ANGO.  
+- Hardi TABUNA.
 
 ## Development server
 
