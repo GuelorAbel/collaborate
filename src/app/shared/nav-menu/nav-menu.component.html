@@ -1,0 +1,29 @@
+<!-- section du menu de navigation -->
+<div class="text-primary-content">
+    <app-box-content>
+        <nav class="navbar">
+            <!-- espace du logo -->
+            <div class="navbar-start">
+            <a routerLink="/">
+                <img [src]="logo" alt="Un chariot qui représente le logo de la boutique" class="w-14 h-14">
+            </a>
+            </div>
+            <div class="navbar-end">
+                <ul class="menu menu-horizontal px-1 uppercase text-primary">
+                    <li routerLink="/">
+                        <a class="hover:bg-transparent text-medium">Accueil</a>
+                    </li>
+                    <li routerLink="/nos-produits">
+                        <a class="hover:bg-transparent text-medium">boutique</a>
+                    </li>
+                    <li routerLink="/votre-panier">
+                        <a class="hover:bg-transparent text-medium">
+                            <i class="ri-shopping-cart-fill ri-xl"></i>(0)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+        </nav>
+    </app-box-content>
+</div>

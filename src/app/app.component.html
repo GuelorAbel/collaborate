@@ -1,21 +1,10 @@
-<img [src]="image" class="w-full h-[400px] object-cover" alt="">
-
-<app-box-content>
-
-<h1 class="text-3xl font-bold underline text-green-500">
-  Hello world!
-</h1>
-<button class="btn">Button</button>
-<button class="btn btn-primary btn-lg">Primary</button>
-<button class="btn btn-secondary">Secondary</button>
-<button class="btn btn-accent">Accent</button>
-<button class="btn btn-ghost">Ghost</button>
-<button class="btn btn-link">Link</button>
-<button class="btn btn-info">Info</button>
-<button class="btn btn-success">Success</button>
-<button class="btn btn-warning">Warning</button>
-<button class="btn btn-error">Error</button>
-
-
-
-</app-box-content>
+<!-- espace de l'entête du site -->
+<header>
+  <app-nav-menu />
+</header>
+<!-- espace du corps du site -->
+<main>
+  <router-outlet></router-outlet>
+</main>
+<!-- espace du pied de page du site -->
+<footer></footer>

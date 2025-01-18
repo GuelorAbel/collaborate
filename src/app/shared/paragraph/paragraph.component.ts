@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-box-content',
+  selector: 'app-paragraph',
   standalone: true,
   imports: [],
   template: `
-    <div class="w-[90%] mx-auto">
+    <p class="my-4 text-sm md:text-lg font-extralight">
       <ng-content></ng-content>
-    </div>
+    </p>
   `,
   styles: ``
 })
-export class BoxContentComponent {
+export class ParagraphComponent {
 
 }
