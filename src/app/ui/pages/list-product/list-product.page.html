@@ -1,1 +1,30 @@
-<p>list-product works!</p>
+<!-- image de couverture -->
+<section class="relative top-0 left-0 w-full h-auto md:h-[60vh]">
+    <img [src]="hero" alt="Cette image est représentée par une personne faisant
+    ses achats depuis son Pc sur notre site" class="w-full h-full object-cover">
+    <!-- espace du contenu et de l'overlay -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black/45">
+        <app-box-content>
+            <div class="my-[15%] lg:my-[10%]">
+                <app-heading variant="h1" label="nos produits"  
+            class="uppercase text-primary text-center lg:text-left"/>
+            </div>
+        </app-box-content>
+    </div>
+</section>
+
+
+ <!-- section qui affiche les produits -->
+ <section class="py-12">
+    <app-box-content>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        @for(product of products$ | async; track product.id) {
+          <app-box-content>
+            <app-card-product [product]="product"
+            (showProduct)="singleProduct(product.id)"
+            (addToCart)="addToCart(product)"/>
+          </app-box-content>
+        }
+      </div>
+    </app-box-content>
+ </section>

@@ -1,10 +1,14 @@
 <!-- espace de l'entête du site -->
-<header>
+<header class="sticky top-0 z-10 bg-white shadow-lg">
   <app-nav-menu />
 </header>
 <!-- espace du corps du site -->
-<main>
+<main class="pb-6">
   <router-outlet></router-outlet>
 </main>
 <!-- espace du pied de page du site -->
-<footer></footer>
+<footer class="bg-[#263238] py-4 fixed bottom-0 z-10 w-full">
+  <app-box-content>
+    <span class="text-white text-sm">&copy; 2024 Collaborate. Tous droits réservés.</span>
+  </app-box-content>
+</footer>

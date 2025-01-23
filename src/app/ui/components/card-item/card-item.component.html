@@ -1,0 +1,19 @@
+
+<div class="bg-white shadow-md border rounded-xl mt-6 mb-3 flex items-center justify-between p-3 w-[45vw] space-x-3">
+    <div class="flex space-x-3">
+        <!-- espace de l'image -->
+        <img [src]="item().image" [alt]="item().title" class="w-16 h-16 object-contain">
+
+        <div class="flex flex-col space-y-1">
+        <span class="text-md font-semibold">{{ item().title }}</span>
+        <span>{{ item().price | currency: "EUR" }}</span>
+        <!-- <div class="space-x-3">
+            <app-btn class="btn btn-circle btn-success btn-sm"><i class="ri-add-line"></i></app-btn>
+            <span>Quntité</span>
+            <app-btn class="btn btn-circle btn-error btn-sm"><i class="ri-subtract-line"></i></app-btn>
+        </div> -->
+        </div>
+    </div>
+
+    <app-btn class="btn btn-error"><i class="ri-delete-bin-6-line"></i> Supprimer </app-btn>
+</div>

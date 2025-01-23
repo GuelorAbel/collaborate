@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './ui/pages/home/home.page';
-import { ListProductPage } from './ui/pages/list-product/list-product.page';
-import { CartPage } from './ui/pages/cart/cart.page';
 
 export const routes: Routes = [
     {
@@ -16,12 +14,18 @@ export const routes: Routes = [
     },
     {
         path: "nos-produits",
-        component: ListProductPage,
+        loadComponent: () => import('./ui/pages/list-product/list-product.page').then(m => m.ListProductPage),
         title: "NOS PRODUITS"
     },
     {
-        path: "votre-panier",
-        component: CartPage,
+        path: "mon-panier",
+        loadComponent: () => import('./ui/pages/cart/cart.page').then(m => m.CartPage),
         title: "VOTRE PANIER"
+    },
+    {
+        path: "detail-produit/:id",
+        loadComponent: () => import('./ui/pages/detail.product/detail.product.component').then(m => m.DetailProductComponent),
+        title: "DETAIL DU PRODUIT"
     }
+
 ];

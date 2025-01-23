@@ -10,15 +10,16 @@
             </div>
             <div class="navbar-end">
                 <ul class="menu menu-horizontal px-1 uppercase text-primary">
-                    <li routerLink="/">
-                        <a class="hover:bg-transparent text-medium">Accueil</a>
+                    <li>
+                        <a routerLink="/" class="hover:bg-transparent text-medium">Accueil</a>
                     </li>
-                    <li routerLink="/nos-produits">
-                        <a class="hover:bg-transparent text-medium">boutique</a>
+                    <li>
+                        <a routerLink="/nos-produits" class="hover:bg-transparent text-medium">boutique</a>
                     </li>
-                    <li routerLink="/votre-panier">
-                        <a class="hover:bg-transparent text-medium">
-                            <i class="ri-shopping-cart-fill ri-xl"></i>(0)
+                    <li>
+                        <a routerLink="/mon-panier" class="hover:bg-transparent text-medium shadow-2xl relative">
+                            <i class="ri-shopping-cart-2-line ri-lg"></i>
+                            <span class="p-2 rounded-lg absolute -top-2 -right-1"> {{ productBag.cart().length }} </span>
                         </a>
                     </li>
                 </ul>

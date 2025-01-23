@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BoxContentComponent } from '../box-content/box-content.component';
 import { RouterLink } from '@angular/router';
+import { CartService } from '@app/core/services/cart.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,4 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class NavMenuComponent {
   logo = "/images/logo.svg"
+
+    // injection du service qui gère le panier
+    productBag = inject(CartService)
 }
