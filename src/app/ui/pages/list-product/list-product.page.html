@@ -14,17 +14,15 @@
 </section>
 
 
- <!-- section qui affiche les produits -->
- <section class="py-12">
-    <app-box-content>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- section qui affiche les produits -->
+<section class="py-12">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         @for(product of products$ | async; track product.id) {
-          <app-box-content>
-            <app-card-product [product]="product"
-            (showProduct)="singleProduct(product.id)"
-            (addToCart)="addToCart(product)"/>
-          </app-box-content>
+            <app-box-content>
+                <app-card-product [product]="product"
+                (showProduct)="singleProduct(product.id)"
+                (addToCart)="addToCart(product)"/>
+            </app-box-content>
         }
-      </div>
-    </app-box-content>
- </section>
+    </div>
+</section>

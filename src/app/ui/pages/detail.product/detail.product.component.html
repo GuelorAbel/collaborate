@@ -1,5 +1,5 @@
 @if ($product(); as prod) {
-    <section class="my-auto pt-12 pb-8">
+    <section class="my-auto pb-10">
         <app-box-content>
         <!--  menu fil d'Ariane pour naviguer dans l'application -->
         <div class="breadcrumbs text-sm">
@@ -13,17 +13,17 @@
         <div class="grid md:grid-cols-2 gap-4">
             <!-- espace de l'image -->
             <div class="md:my-auto">
-            <img [src]="prod.image" alt="prod.title" class="w-56 md:w-[65%] object-cover mx-auto">
+                <img [src]="prod.image" alt="prod.title" class="h-[65vh] object-cover mx-auto">
             </div>
             <!-- espace du contenu -->
             <div class="px-4 md:my-auto">
-            <app-heading variant="h1" [label]="prod.title" class="uppercase" />
-            <hr class="my-2">
+                <app-heading variant="h1" [label]="prod.title" class="uppercase" />
+                <hr class="my-2">
             <!-- espace de la description en dessous -->
             <div>
                 <!-- la description du produit -->
                 <app-paragraph>
-                {{ prod.description }}
+                    {{ prod.description }}
                 </app-paragraph>
                 <!-- la categorie & le prix -->
                 <div class="flex justify-between items-center">

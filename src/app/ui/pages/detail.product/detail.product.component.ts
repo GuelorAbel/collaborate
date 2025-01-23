@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '@app/core/services/product.service';
 import { BoxContentComponent } from "../../../shared/box-content/box-content.component";
 import { HeadingComponent } from "../../../shared/heading/heading.component";
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-detail.product',
   standalone: true,
-  imports: [BoxContentComponent, HeadingComponent, ParagraphComponent, BtnComponent, CommonModule],
+  imports: [BoxContentComponent, HeadingComponent, ParagraphComponent, BtnComponent, CommonModule, RouterLink],
   templateUrl: './detail.product.component.html',
   styles: ``
 })
