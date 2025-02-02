@@ -1,64 +1,91 @@
+<ngx-spinner
+bdColor = "rgba(29, 78, 216, 0.9)"
+size="medium"
+type="square-jelly-box"
+[fullScreen]="true"
+>
+    <p class="text-white text-3xl italic">
+        Chargement en cours, patientez s'il vous plaît !!!
+    </p>
+</ngx-spinner>
+
+<section class="my-auto mt-4 pb-4 min-h-[50vh]">
 @if ($product(); as prod) {
-    <section class="my-auto pb-10">
-        <app-box-content>
-        <!--  menu fil d'Ariane pour naviguer dans l'application -->
-        <div class="breadcrumbs text-sm">
-            <ul>
-            <li><a routerLink="/">Accueil</a></li>
-            <li><a routerLink="/nos-produits">Boutique</a></li>
-            <li class="font-semibold text-primary"> {{ prod.title }} </li>
-            </ul>
-        </div>
+    <app-box-content>
+    <!--  menu fil d'Ariane pour naviguer dans l'application -->
+    <div class="breadcrumbs text-sm mb-3">
+        <ul>
+        <li><a routerLink="/">Accueil</a></li>
+        <li><a routerLink="/nos-produits">Boutique</a></li>
+        <li class="font-semibold text-primary"> {{ prod.title }} </li>
+        </ul>
+    </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
-            <!-- espace de l'image -->
-            <div class="md:my-auto">
-                <img [src]="prod.image" alt="prod.title" class="h-[65vh] object-cover mx-auto">
-            </div>
-            <!-- espace du contenu -->
-            <div class="px-4 md:my-auto">
-                <app-heading variant="h1" [label]="prod.title" class="uppercase" />
-                <hr class="my-2">
-            <!-- espace de la description en dessous -->
+    <div class="grid lg:grid-cols-2 lg:place-content-center gap-4 mt-4 lg:mt-0">
+        <!-- espace de l'image -->
+        <div class="md:my-auto overflow-hidden">
+        <img [src]="prod.image" alt="prod.title" class="w-56 lg:w-[60%] object-cover mx-auto">
+        </div>
+        <!-- espace du contenu -->
+        <div class="px-4 md:my-auto">
+        <app-heading variant="h1" [label]="prod.title" class="uppercase" />
+        <hr class="my-2">
+        <!-- espace de la description en dessous -->
+        <div>
+            <!-- la description du produit -->
+            <app-paragraph>
+            {{ prod.description }}
+            </app-paragraph>
+            <!-- la categorie & le prix -->
+            <div class="flex justify-between items-center">
             <div>
-                <!-- la description du produit -->
                 <app-paragraph>
-                    {{ prod.description }}
+                Catégorie :  <span class="font-bold uppercase text-primary"> {{ prod.category}} </span>
                 </app-paragraph>
-                <!-- la categorie & le prix -->
-                <div class="flex justify-between items-center">
-                <div>
-                    <app-paragraph>
-                    Catégorie :  <span class="font-bold uppercase text-primary"> {{ prod.category}} </span>
-                    </app-paragraph>
-                </div>
+            </div>
 
-                <div>
+            <div>
+            <app-paragraph>
+                Prix :  <span class="font-bold uppercase text-success"> {{ prod.price | currency: "EUR" }} </span>
+            </app-paragraph>
+            </div>
+
+            <div>
                 <app-paragraph>
-                    Prix :  <span class="font-bold uppercase text-success"> {{ prod.price | currency: "EUR" }} </span>
+                Note :  <span class="font-bold uppercase text-primary"> {{ prod.rating.rate}} </span>
                 </app-paragraph>
-                </div>
-
-                <div>
-                    <app-paragraph>
-                    Note :  <span class="font-bold uppercase text-primary"> {{ prod.rating.rate}} </span>
-                    </app-paragraph>
-                </div>
-
-                <div>
-                    <app-paragraph> Stock :
-                    <span class="font-bold uppercase text-primary">{{ prod.rating.count }}</span>
-                    </app-paragraph>
-                </div>
-
-                </div>
             </div>
-            <!-- espace du bouton -->
-            <div class="md:mt-10">
-                <app-btn class="btn btn-success btn-block">Ajouter au <i class="ri-shopping-cart-2-fill"></i></app-btn>
+
+            <div>
+                <app-paragraph> Stock :
+                <span class="font-bold uppercase text-primary">{{ prod.rating.count }}</span>
+                </app-paragraph>
             </div>
+
             </div>
         </div>
-        </app-box-content>
-    </section>
-}  
+        <!-- espace du bouton -->
+        <div class="md:mt-10">
+            <app-btn class="btn btn-success btn-block" (btnAction)="addToCart(prod)">Ajouter au <i class="ri-shopping-cart-2-fill"></i></app-btn>
+        </div>
+        </div>
+    </div>
+    </app-box-content>
+} @else {
+    <app-box-content>
+    <div class="flex flex-col md:flex-row gap-6 justify-center min-h-[68vh] items-center">
+        <div class="flex-1">
+        <div class="bg-accent/30 skeleton h-52 w-72 mx-auto"></div>
+        </div>
+        <div class="flex-[2]">
+        <div class="flex flex-col gap-4">
+            <div class="bg-accent/30 skeleton h-8 w-3/4"></div>
+            <div class="bg-accent/30 skeleton h-4 w-full"></div>
+            <div class="accent/30 skeleton h-4 w-full"></div>
+            <div class="accent/30 skeleton h-4 w-1/2"></div>
+        </div>
+        </div>
+    </div>
+    </app-box-content>
+}
+</section>

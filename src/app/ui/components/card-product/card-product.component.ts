@@ -5,6 +5,7 @@ import { CartService } from '@app/core/services/cart.service';
 import { BtnComponent } from "../../../shared/btn/btn.component";
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-card-product',
   standalone: true,
@@ -19,6 +20,7 @@ export class CardProductComponent {
   // injection des dépendances
   router = inject(Router);
   cartService = inject(CartService);
+
 
   showDetails(product: Product) {
     this.showProduct.emit(product);

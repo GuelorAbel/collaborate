@@ -28,7 +28,9 @@
             ],
             "styles": [
               "src/styles.css", 
-              "node_modules/remixicon/fonts/remixicon.css"
+              "node_modules/remixicon/fonts/remixicon.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css"
             ],
             "scripts": []
           },
