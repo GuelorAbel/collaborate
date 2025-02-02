@@ -1,0 +1,51 @@
+<section class="flex flex-col justify-center items-center h-[80vh] lg:py-6">
+    <app-box-content>
+        <div class="grid lg:grid-cols-2 gap-6">
+            <!-- espace de l'image -->
+            <div>
+                <img [src]="connectImg" alt="Une dame portant ses sacs après son shopping" class="w-full mx-auto rounded-xl
+                shadow-2xl">
+            </div>
+
+            <!-- espace du formiuulaire -->
+            <div class="my-auto">
+                <app-heading variant="h1" label="Connexion" class="uppercase text-primary underline underline-offset-4 
+                text-center lg:text-right" />
+                <form class="form-control space-y-4 mt-10">
+                    <!-- email -->
+                    <label class="input input-bordered input-primary flex items-center gap-2">
+                        <i class="ri-mail-fill ri-xl text-primary"></i>
+                        <input type="text" class="grow" placeholder="Email" />
+                    </label>
+
+                    <!-- password -->
+                    <label class="input input-bordered input-primary flex items-center gap-2">
+                        <i class="ri-key-fill ri-xl text-primary"></i>
+                        <input type="password" class="grow" value="password" />
+                    </label>
+
+                    <!-- espace de la validation -->
+                    <app-btn class="btn btn-primary w-full">Connexion</app-btn>
+                </form>
+                <!-- créer un compte si vous n'en avez pas un -->
+                <div class="text-sm text-center lg:text-right mt-2">
+                    <span>Pas de compte ? <a class="text-primary font-semibold cursor-pointer" onclick="register.showModal()">
+                        Inscrivez-vous</a> 
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- poppup de creation de compte -->
+        <dialog id="register" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click outside to close</p>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+        
+    </app-box-content>
+</section>

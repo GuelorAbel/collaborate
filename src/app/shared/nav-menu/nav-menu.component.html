@@ -13,12 +13,18 @@
                     <li>
                         <a routerLink="/" class="hover:bg-transparent text-medium">Accueil</a>
                     </li>
+
                     <li>
                         <a routerLink="/nos-produits" class="hover:bg-transparent text-medium">boutique</a>
                     </li>
+
+                    <li>
+                        <a routerLink="/connexion" class="hover:bg-transparent text-medium">connexion</a>
+                    </li>
+
                     <li>
                         <a routerLink="/mon-panier" class="hover:bg-transparent text-medium shadow-2xl relative">
-                            <i class="ri-shopping-cart-2-line ri-lg"></i>
+                            <i class="ri-shopping-cart-2-line ri-xl"></i>
                             <span class="p-2 rounded-lg absolute -top-2 -right-1"> {{ productBag.cart().length }} </span>
                         </a>
                     </li>

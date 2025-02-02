@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './ui/pages/home/home.page';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -18,8 +19,14 @@ export const routes: Routes = [
         title: "NOS PRODUITS"
     },
     {
+        path: "connexion",
+        loadComponent: () => import('./ui/pages/login/login.page').then(m => m.LoginPage),
+        title: "CONNECTEZ-VOUS A VOTRE ESPACE"
+    },
+    {
         path: "mon-panier",
         loadComponent: () => import('./ui/pages/cart/cart.page').then(m => m.CartPage),
+        // canActivate: [AuthGuard],
         title: "VOTRE PANIER"
     },
     {
