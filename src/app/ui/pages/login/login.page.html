@@ -1,4 +1,4 @@
-<section class="flex flex-col justify-center items-center h-[80vh] lg:py-6">
+<section class="flex flex-col justify-center items-center h-[80vh] lg:py-10">
     <app-box-content>
         <div class="grid lg:grid-cols-2 gap-6">
             <!-- espace de l'image -->
@@ -9,8 +9,7 @@
 
             <!-- espace du formiuulaire -->
             <div class="my-auto">
-                <app-heading variant="h1" label="Connexion" class="uppercase text-primary underline underline-offset-4 
-                text-center lg:text-right" />
+                <app-heading variant="h1" label="Connexion" class="uppercase text-primary underline underline-offset-4" />
                 <form class="form-control space-y-4 mt-10">
                     <!-- email -->
                     <label class="input input-bordered input-primary flex items-center gap-2">
@@ -29,8 +28,8 @@
                 </form>
                 <!-- créer un compte si vous n'en avez pas un -->
                 <div class="text-sm text-center lg:text-right mt-2">
-                    <span>Pas de compte ? <a class="text-primary font-semibold cursor-pointer" onclick="register.showModal()">
-                        Inscrivez-vous</a> 
+                    <span>Si vous n'avez pas encore un compte,  <a class="text-primary font-semibold cursor-pointer" onclick="register.showModal()">
+                        créez en un ici</a> 
                     </span>
                 </div>
             </div>
@@ -38,10 +37,56 @@
 
         <!-- poppup de creation de compte -->
         <dialog id="register" class="modal">
-            <div class="modal-box">
-                <h3 class="text-lg font-bold">Hello!</h3>
-                <p class="py-4">Press ESC key or click outside to close</p>
+            <div class="modal-box space-y-4">
+                <app-heading variant="h3" label="créez un compte" class="text-primary uppercase underline underline-offset-4" />
+                <!-- formulaire de création de compte -->
+                <form>
+                    <div class="grid gap-4">
+                        <!-- nom & prénom -->
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="text" class="grow" placeholder="Entrez votre nom" />
+                                <i class="ri-user-3-line ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="text" class="grow" placeholder="Entrez votre prénom" />
+                                <i class="ri-user-3-line ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                        <!-- email & phone number -->
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="email" class="grow" placeholder="Entrez votre Email" />
+                                <i class="ri-mail-fill ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="text" class="grow" placeholder="Entrez votre numéro de téléphone" />
+                                <i class="ri-cellphone-line ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                        <!-- password & confirmation de mot de passe -->
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="password" class="grow" placeholder="Entrez votre mot de passe" />
+                                <i class="ri-key-fill ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="input input-bordered input-primary flex items-center gap-2">
+                                <input type="password" class="grow" placeholder="Confirmez votre mot de passe" />
+                                <i class="ri-key-fill ri-1x text-primary"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- bouton de soumission du formulaire -->
+                    <app-btn class="btn btn-primary w-full mt-4">Créer votre compte</app-btn>
+                </form>
             </div>
+            <!-- espace de fermeture du poppup -->
             <form method="dialog" class="modal-backdrop">
                 <button>close</button>
             </form>
