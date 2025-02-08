@@ -1,6 +1,6 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BoxContentComponent } from "../../../shared/box-content/box-content.component";
+import { BoxContentComponent } from "@app/shared/box-content/box-content.component";
 
 @Component({
   selector: 'app-search-bar',

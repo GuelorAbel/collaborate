@@ -29,29 +29,40 @@
 <!-- barre de recherche -->
 <app-search-bar [(searchItem)]="searchItem"></app-search-bar>
 
-<!-- section qui affiche les produits -->
-<section class="min-h-[50vh] pt-10 pb-5">
-    <app-box-content>
-        <!-- affichage de données selon la condition définie -->
-        @if(productListFiltered(); as products) {
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            @for(product of products; track product.id) {
-            <app-box-content>
-                <app-card-product [product]="product"
-                (showProduct)="singleProduct(product.id)"
-                (addToCart)="addToCart(product)"/>
-            </app-box-content>
+<!-- affichage des produits filtreés s'il y en a, sinon  -->
+@if(productListFiltered(); as products) {
+    <!-- section qui affiche les produits -->
+    <section class="min-h-[50vh] pt-10 pb-5">
+        <app-box-content>
+            <!-- affichage de données selon la condition définie -->
+            @if(productListFiltered(); as products) {
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                @for(product of products; track product.id) {
+                <app-box-content>
+                    <app-card-product [product]="product"
+                    (showProduct)="singleProduct(product.id)"
+                    (addToCart)="addToCart(product)"/>
+                </app-box-content>
+                }
+            </div>
+            } @else {
+            <div class="flex flex-col lg:flex-row justify-center gap-4 items-center h-[50vh]">
+                <span class="loading loading-spinner loading-lg text-primary"></span>
+                <p class="uppercase italic text-xl text-center lg:text-left">
+                    Une erreur c'est produite lors de la réccupération des données... <br>
+                    veillez s'il vous plaît, Vérifier votre connexion internet.
+                </p>
+            </div>
             }
-        </div>
-        } @else {
-        <div class="flex flex-col lg:flex-row justify-center gap-4 items-center h-[50vh]">
-            <span class="loading loading-spinner loading-lg text-primary"></span>
-            <p class="uppercase italic text-xl text-center lg:text-left">
-                Une erreur c'est produite lors de la réccupération des données... <br>
-                veillez s'il vous plaît, Vérifier votre connexion internet.
-            </p>
-        </div>
-        }
 
-    </app-box-content>
-</section>
+        </app-box-content>
+    </section>
+} @else {
+    <div class="flex flex-col items-center justify-center h-[60vh]">
+        <app-heading variant="h3" label="Aucun produit n'a été trouvé ..." class="text-center" />
+        <app-paragraph class="text-center">
+        Veuillez vérifier l'orthographe du produit recherché ou utiliser une autre recherche...
+        </app-paragraph>
+    </div>
+}
+
