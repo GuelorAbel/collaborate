@@ -1,35 +1,35 @@
 <!-- section du menu de navigation -->
 <div class="text-primary-content">
     <app-box-content>
-        <nav class="navbar">
+        <div class="navbar">
             <!-- espace du logo -->
             <div class="navbar-start">
-            <a routerLink="/">
-                <img [src]="logo" alt="Un chariot qui représente le logo de la boutique" class="w-14 h-14">
-            </a>
+                <a routerLink="/">
+                    <img [src]="logo" alt="Un chariot qui représente le logo de la boutique" class="w-14 h-14">
+                </a>
             </div>
-            <div class="navbar-end">
+            <nav class="navbar-end">
                 <ul class="menu menu-horizontal px-1 uppercase text-primary">
                     <li>
-                        <a routerLink="/" class="hover:bg-transparent text-medium">Accueil</a>
+                        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="hover:bg-transparent text-medium">Accueil</a>
                     </li>
 
                     <li>
-                        <a routerLink="/nos-produits" class="hover:bg-transparent text-medium">boutique</a>
+                        <a routerLink="/nos-produits" routerLinkActive="active" class="hover:bg-transparent text-medium">boutique</a>
                     </li>
 
                     <li>
-                        <a routerLink="/connexion" class="hover:bg-transparent text-medium">connexion</a>
+                        <a routerLink="/connexion" routerLinkActive="active" class="hover:bg-transparent text-medium">connexion</a>
                     </li>
 
                     <li>
-                        <a routerLink="/mon-panier" class="hover:bg-transparent text-medium shadow-2xl relative">
+                        <a routerLink="/mon-panier" routerLinkActive="active" class="hover:bg-transparent text-medium shadow-2xl relative">
                             <i class="ri-shopping-bag-4-line ri-xl"></i>
                             <span class="p-2 rounded-lg absolute -top-2 -right-1"> {{ productBag.cart().length }} </span>
                         </a>
                     </li>
                 </ul>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </app-box-content>
 </div>
