@@ -25,7 +25,6 @@ import { ParagraphComponent } from "../../../shared/paragraph/paragraph.componen
 import { CardItemComponent } from "../../components/card-item/card-item.component";
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Product } from '@app/core/models/product.model';
 
 @Component({
   selector: 'app-cart',
@@ -38,6 +37,5 @@ import { Product } from '@app/core/models/product.model';
 export class CartPage {
   cartService = inject(CartService);
   quantity = signal<number>(1);
-
 }
 
