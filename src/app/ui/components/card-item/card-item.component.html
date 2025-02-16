@@ -8,10 +8,11 @@
         <span class="text-sm font-semibold">{{ item().title }}</span>
         <!-- espace du prix(le prix du produit * la quantité) -->
         <span>{{ item().price*quantity() | currency: "EUR" }}</span>
+        <hr class="my-3">
         <div class="space-x-3 flex items-center flex-row gap-2">
             <app-btn class="btn btn-circle btn-success btn-xs" (click)="increaseQuantity()"><i class="ri-add-line"></i></app-btn>
             <span>{{ quantity() }}</span>
-            <app-btn class="btn btn-circle btn-error btn-xs" (click)="decreaseQuantity()"><i class="ri-subtract-line"></i></app-btn>
+            <app-btn class="btn btn-circle btn-error btn-xs" (click)="decreaseQuantity()" ><i class="ri-subtract-line"></i></app-btn>
         </div>
         </div>
     </div>

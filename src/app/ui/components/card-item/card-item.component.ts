@@ -21,7 +21,7 @@ export class CardItemComponent {
   // Methode d'augmentation de la quantité
   increaseQuantity() {
     this.quantity.set(this.quantity() + 1);
-    // Mise à jour du panier
+    // Mise à jour du panier après l'augmentation de la quantité
     this.cartService.cart.set(this.cartService.cart().map(item => 
       item.product.id === this.item().id ? { ...item, quantity: this.quantity() } : item
     ));
@@ -31,10 +31,13 @@ export class CardItemComponent {
   decreaseQuantity() {
     if (this.quantity() > 1) {
       this.quantity.set(this.quantity() - 1);
-      // Mise à jour du panier
+      // Mise à jour du panier après la diminution de la quantité
       this.cartService.cart.set(this.cartService.cart().map(item => 
         item.product.id === this.item().id ? { ...item, quantity: this.quantity() } : item
       ));
+    }
+    else {  // condition qui supprime le produit du panier  Si la quantité est déjà à 1, 
+      this.cartService.removeItemToCart(this.item().id);
     }
   }
 
