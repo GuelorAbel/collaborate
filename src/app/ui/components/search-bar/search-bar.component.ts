@@ -13,6 +13,6 @@ export class SearchBarComponent {
     /*signal qui contient la valeur recherchée, initialiser avec une chaîne vide.
       j'utilise la fonction model pour crée un signal qui peut être modifié qui fonctionne de manière bi-directionnelle comme le [(ngModel)].
     */
-    readonly searchItem = model<string>("");
+    searchItem = model<string>("");
 
   }

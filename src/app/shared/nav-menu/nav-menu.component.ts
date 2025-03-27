@@ -11,8 +11,13 @@ import { CartService } from '@app/core/services/cart.service';
   styles: ``
 })
 export class NavMenuComponent {
-  logo = "/images/logo.svg"
+  logo = "/images/logo.svg";
 
-    // injection du service qui gère le panier
-    productBag = inject(CartService)
+  // Injection du service qui gère le panier
+  private cartService = inject(CartService);
+
+  // Propriété pour accéder au nombre d'articles dans le panier
+  get cartItemCount(): number {
+    return Object.keys(this.cartService.cart()).length;
+  }
 }

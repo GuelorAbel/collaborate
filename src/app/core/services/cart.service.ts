@@ -1,52 +1,100 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  // initialisation du panier
-  cart = signal<{ product: Product, quantity: number }[]>([])
-  // injection des services
-  private toastr = inject(ToastrService)
+  private toastr = inject(ToastrService);
 
-  // méthode d'ajout au panier
+  // Initialisation du panier
+  cart = signal<Record<number, { product: Product; quantity: number }>>({});
+
+  // Liste des produits dans le panier
+  cartItems = computed(() => Object.values(this.cart()));
+
+  // Calcul du total du panier
+  cartTotal = computed(() => {
+    return this.cartItems().reduce((total, item) => {
+      return total + item.product.price * item.quantity;
+    }, 0);
+  });
+
+  // Méthode pour obtenir le prix total
+  totalPrice() {
+    return this.cartTotal();
+  }
+
+  // Ajouter un produit au panier
   addToCart(product: Product) {
-    // Vérifiez si le produit est valide
     if (!product || !product.id) {
-      this.toastr.error("Produit invalide");
+      this.toastr.error('Produit invalide');
       return;
     }
 
-    // Vérifiez si le produit existe déjà dans le panier
-    const existingProductIndex = this.cart().findIndex(item => item.product.id === product.id);
-    
-    // Si le produit existe, augmentez sa quantité
-    if (existingProductIndex !== -1) {
-      const updatedCart = this.cart().map((item, index) =>
-        index === existingProductIndex ? { ...item, quantity: item.quantity + 1 } : item
-      );
-      this.cart.set(updatedCart);
+    const cart = { ...this.cart() };
+    const existingItem = cart[product.id];
+
+    if (existingItem) {
+      cart[product.id] = { product, quantity: existingItem.quantity + 1 };
     } else {
-      this.cart.set([...this.cart(), { product, quantity: 1 }]);
+      cart[product.id] = { product, quantity: 1 };
     }
-  
-    this.toastr.success("Le produit a bien été ajouté avec succès");
+
+    this.cart.set(cart);
+    this.toastr.success('Le produit a bien été ajouté avec succès');
   }
 
-  // méthode de suppression d'un produit du panier
+  // Retirer un produit du panier
   removeItemToCart(productId: number) {
-    // Vérifiez si le produit existe déjà dans le panier
-    const updatedCart = this.cart().filter(item => item.product.id !== productId);
-    // Mettez à jour le panier
-    this.cart.set(updatedCart);
-    this.toastr.info("Le produit a bien été retiré du panier avec succès"); // Affichez un message de confirmation
+    const cart = { ...this.cart() };
+
+    if (!cart[productId]) {
+      this.toastr.warning('Le produit n\'existe pas dans le panier');
+      return;
+    }
+
+    delete cart[productId];
+    this.cart.set(cart);
+    this.toastr.info('Le produit a bien été retiré du panier avec succès');
   }
 
-  // methode qui calcule le prix total des produits du panier
-  totalPrice() {
-    return this.cart().reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+// Diminuer la quantité d'un produit
+decrementProductQuantity(productId: number) {
+  const cart = { ...this.cart() }; // Copie de l'état actuel du panier
+  const item = cart[productId]; // Récupération de l'article
+
+  if (!item) {
+    this.toastr.warning('Le produit n\'existe pas dans le panier');
+    return;
   }
+
+  if (item.quantity > 1) {
+    // Si la quantité est supérieure à 1, on la décrémente
+    cart[productId] = { product: item.product, quantity: item.quantity - 1 };
+  } else {
+    // Sinon, on supprime le produit du panier
+    delete cart[productId];
+    this.toastr.info(`Vous avez retiré du panier le produit : "${item.product.title}".`);
+  }
+
+  this.cart.set(cart); // Mise à jour du signal
 }
 
+// Augmenter la quantité d'un produit
+incrementProductQuantity(productId: number) {
+  const cart = { ...this.cart() }; // Copie de l'état actuel du panier
+  const item = cart[productId]; // Récupération de l'article
+
+  if (!item) {
+    this.toastr.warning('Le produit n\'existe pas dans le panier');
+    return;
+  }
+
+  // Incrémentation de la quantité
+  cart[productId] = { product: item.product, quantity: item.quantity + 1 };
+
+  this.cart.set(cart); // Mise à jour du signal
+}
+}

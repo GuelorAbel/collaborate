@@ -10,7 +10,7 @@ import { HeadingComponent } from '@app/shared/heading/heading.component';
   templateUrl: './login.page.html',
   styles: ``
 })
-export class LoginPage {
+export default class LoginPage {
   // image
   connectImg = "/images/shopping-connect.jpg"
 }

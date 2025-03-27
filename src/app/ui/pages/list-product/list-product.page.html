@@ -39,9 +39,8 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     @for(product of products; track product.id) {
                     <app-box-content>
-                        <app-card-product [product]="product"
-                        (showProduct)="singleProduct(product.id)"
-                        (addToCart)="addToCart(product)"/>
+                        <app-card-product [product]="product" (showProduct)="showProduct(product.id)" 
+                            (addProduct)="addProductToCart(product)"/>
                     </app-box-content>
                     }
                 </div>

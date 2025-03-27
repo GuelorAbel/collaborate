@@ -18,7 +18,7 @@ import { Product } from '@app/core/models/product.model';
   templateUrl: './detail.product.component.html',
   styles: ``
 })
-export class DetailProductComponent {
+export default class DetailProductComponent {
     // injection des déppendances
     private service = inject(ProductService);
     private route = inject(ActivatedRoute);

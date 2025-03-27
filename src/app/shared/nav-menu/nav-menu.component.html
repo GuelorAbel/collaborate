@@ -25,7 +25,11 @@
                     <li>
                         <a routerLink="/mon-panier" routerLinkActive="active" class="hover:bg-transparent text-medium shadow-2xl relative">
                             <i class="ri-shopping-bag-4-line ri-xl"></i>
-                            <span class="p-2 rounded-lg absolute -top-2 -right-1"> {{ productBag.cart().length }} </span>
+                            <span class="p-2 rounded-lg absolute -top-2 -right-1"> 
+                                <span class="p-2 rounded-lg absolute -top-2 -right-1">
+                                    {{ cartItemCount }}
+                                </span>
+                            </span>
                         </a>
                     </li>
                 </ul>

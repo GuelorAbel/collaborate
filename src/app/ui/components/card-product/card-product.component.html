@@ -2,7 +2,7 @@
 @let prod = product();
 
 <div class="card w-full shadow-xl cursor-pointer mb-4 hover:scale-105 duration-300 overflow-hidden tooltip" 
-title="{{ product().title | uppercase  }}">
+title="{{ prod.title | uppercase  }}">
     <div class="relative top-0 left-0 w-full">
         <!-- espace de l'image -->
         <figure class="pt-4">
@@ -19,11 +19,11 @@ title="{{ product().title | uppercase  }}">
     <div class="card-body">
         <div class="card-actions justify-between items-center mt-2">
             <!-- bouton d'ajout au panier -->
-            <app-btn class="btn btn-success btn-sm" (click)="cartService.addToCart(prod)">
+            <app-btn class="btn btn-success btn-sm" (click)="addToCart(prod.id)">
                 Ajouter <i class="ri-shopping-cart-2-fill"></i>
             </app-btn>
             <!-- affichage des details -->
-            <app-btn class="btn btn-info btn-sm" (click)="showDetails(prod)" >
+            <app-btn class="btn btn-info btn-sm" (click)="showDetails(prod.id)" >
                 détails <i class="ri-eye-fill"></i>
             </app-btn>
         </div>
