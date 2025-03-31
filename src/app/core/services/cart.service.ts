@@ -38,12 +38,14 @@ export class CartService {
 
     if (existingItem) {
       cart[product.id] = { product, quantity: existingItem.quantity + 1 };
+      this.toastr.info('Ce produit existe déjà dans votre panier, vous pouvez augmenter sa quantité dans le panier!');
+      
     } else {
       cart[product.id] = { product, quantity: 1 }; //
+      this.toastr.success('Le produit a bien été ajouté avec succès');
     }
 
-    this.cart.set(cart);
-    this.toastr.success('Le produit a bien été ajouté avec succès');
+    this.cart.set(cart); 
   }
 
   // Retirer un produit du panier
@@ -51,13 +53,13 @@ export class CartService {
     const cart = { ...this.cart() };
 
     if (!cart[productId]) {
-      this.toastr.warning("Le produit n'existe pas dans le panier");
+      this.toastr.warning("Le produit n'existe pas ou plus dans le panier");
       return;
     }
 
     delete cart[productId];
     this.cart.set(cart);
-    this.toastr.info(`Vous avez retiré du panier le produit`);;
+    this.toastr.info(`Le produit a bien été retiré du panier`);
   }
 
   // Diminuer la quantité d'un produit
@@ -65,14 +67,11 @@ export class CartService {
     const cart = { ...this.cart() }; // Copie de l'état actuel du panier
     const item = cart[productId]; // Récupération de l'article
 
-    // if (!item) {
-    //   this.toastr.warning("Le produit n'existe pas dans le panier");
-    //   return;
-    // }
     if (item.quantity > 1) {
       // Si la quantité est supérieure à 1, on la décrémente
       cart[productId] = { product: item.product, quantity: item.quantity - 1 };
-    } else {
+    } 
+    else {
       // Sinon, on supprime le produit du panier
       delete cart[productId];
       this.toastr.info(`Vous avez retiré du panier le produit : "${item.product.title}".`);
@@ -89,7 +88,7 @@ export class CartService {
 
     if (!item) {
       // Si le produit n'existe pas dans le panier, afficher un message d'avertissement
-      this.toastr.warning("Le produit n'existe pas dans le panier");
+      this.toastr.warning("Le produit n'existe pas ou plus dans le panier");
       return;
     }
 
