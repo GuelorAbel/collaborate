@@ -39,7 +39,7 @@ export class CartService {
     if (existingItem) {
       cart[product.id] = { product, quantity: existingItem.quantity + 1 };
     } else {
-      cart[product.id] = { product, quantity: 1 };
+      cart[product.id] = { product, quantity: 1 }; //
     }
 
     this.cart.set(cart);
@@ -51,50 +51,53 @@ export class CartService {
     const cart = { ...this.cart() };
 
     if (!cart[productId]) {
-      this.toastr.warning('Le produit n\'existe pas dans le panier');
+      this.toastr.warning("Le produit n'existe pas dans le panier");
       return;
     }
 
     delete cart[productId];
     this.cart.set(cart);
-    this.toastr.info('Le produit a bien été retiré du panier avec succès');
+    this.toastr.info(`Vous avez retiré du panier le produit`);;
   }
 
-// Diminuer la quantité d'un produit
-decrementProductQuantity(productId: number) {
-  const cart = { ...this.cart() }; // Copie de l'état actuel du panier
-  const item = cart[productId]; // Récupération de l'article
+  // Diminuer la quantité d'un produit
+  decrementProductQuantity(productId: number) {
+    const cart = { ...this.cart() }; // Copie de l'état actuel du panier
+    const item = cart[productId]; // Récupération de l'article
 
-  if (!item) {
-    this.toastr.warning('Le produit n\'existe pas dans le panier');
-    return;
+    // if (!item) {
+    //   this.toastr.warning("Le produit n'existe pas dans le panier");
+    //   return;
+    // }
+    if (item.quantity > 1) {
+      // Si la quantité est supérieure à 1, on la décrémente
+      cart[productId] = { product: item.product, quantity: item.quantity - 1 };
+    } else {
+      // Sinon, on supprime le produit du panier
+      delete cart[productId];
+      this.toastr.info(`Vous avez retiré du panier le produit : "${item.product.title}".`);
+    }
+
+    // Mise à jour du panier
+    this.cart.set(cart); // Mise à jour du signal
   }
 
-  if (item.quantity > 1) {
-    // Si la quantité est supérieure à 1, on la décrémente
-    cart[productId] = { product: item.product, quantity: item.quantity - 1 };
-  } else {
-    // Sinon, on supprime le produit du panier
-    delete cart[productId];
-    this.toastr.info(`Vous avez retiré du panier le produit : "${item.product.title}".`);
+  // Augmenter la quantité d'un produit
+  incrementProductQuantity(productId: number) {
+    const cart = { ...this.cart() }; // Copie de l'état actuel du panier
+    const item = cart[productId]; // Récupération de l'article
+
+    if (!item) {
+      // Si le produit n'existe pas dans le panier, afficher un message d'avertissement
+      this.toastr.warning("Le produit n'existe pas dans le panier");
+      return;
+    }
+
+    // Incrémentation de la quantité
+    cart[productId] = { product: item.product, quantity: item.quantity + 1 };
+
+    // Mise à jour du signal
+    this.cart.set(cart);
+
   }
-
-  this.cart.set(cart); // Mise à jour du signal
-}
-
-// Augmenter la quantité d'un produit
-incrementProductQuantity(productId: number) {
-  const cart = { ...this.cart() }; // Copie de l'état actuel du panier
-  const item = cart[productId]; // Récupération de l'article
-
-  if (!item) {
-    this.toastr.warning('Le produit n\'existe pas dans le panier');
-    return;
-  }
-
-  // Incrémentation de la quantité
-  cart[productId] = { product: item.product, quantity: item.quantity + 1 };
-
-  this.cart.set(cart); // Mise à jour du signal
-}
 }

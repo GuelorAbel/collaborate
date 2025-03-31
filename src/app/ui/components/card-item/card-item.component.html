@@ -12,15 +12,15 @@
         <div class="space-x-3 flex items-center flex-row gap-2">
 
             <!-- le bouton qui gère l'incrémentation de la quantité du produits -->
-            <app-btn class="btn btn-circle btn-success btn-xs" (click)="increaseQuantity()">
+            <app-btn class="btn btn-circle btn-success btn-xs" (click)="increaseItem()">
                 <i class="ri-add-line"></i>
             </app-btn>
 
             <!-- espace de la quantité du produit -->
             <span>{{ quantity() }}</span>
-
+            
             <!-- le bouton qui gère la décrémentation de la quantité du produits -->
-            <app-btn class="btn btn-circle btn-error btn-xs" (click)="decreaseQuantity()" >
+            <app-btn class="btn btn-circle btn-error btn-xs" (click)="decreaseItem()" >
                 <i class="ri-subtract-line"></i>
             </app-btn>
         </div>

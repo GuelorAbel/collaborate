@@ -17,14 +17,18 @@ export class CardItemComponent {
   removeItem = output<number>();
   quantity = signal<number>(1);
 
+
+
   // Methode d'augmentation de la quantité
-  increaseQuantity() {
+  increaseItem() {
     this.incrementQuantity.emit(this.item().id);
+    this.quantity.update(q => q + 1); // Met à jour la quantité
   }
 
   // Methode de diminution de la quantité
-  decreaseQuantity() {
+  decreaseItem() {
     this.decrementQuantity.emit(this.item().id);
+    this.quantity.update(q => q - 1); // Met à jour la quant
   }
 
   // Methode de suppression d'un produit du panier

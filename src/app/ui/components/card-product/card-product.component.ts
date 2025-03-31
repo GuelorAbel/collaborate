@@ -22,6 +22,5 @@ export class CardProductComponent {
   }
   addToCart(prodId: number) {
     this.addProduct.emit(prodId);
-    // console.log({ prodId });
   }
 }

@@ -21,7 +21,7 @@ export default class CartPage {
 
   // Methode qui permet de diminuer la quantité d'un produit dans le panier
   decrement(productId: number) {
-    this.cartService.decrementProductQuantity(productId);
+    this.cartService.decrementProductQuantity(productId);    
   }
 
   // Methode qui permet d'augmenter la quantité d'un produit
