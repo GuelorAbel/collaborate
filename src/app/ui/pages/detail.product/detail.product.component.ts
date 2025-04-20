@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,input, OnChanges, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '@app/core/services/product.service';
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from '@app/core/services/cart.service';
 import { Product } from '@app/core/models/product.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detail.product',
@@ -18,31 +19,36 @@ import { Product } from '@app/core/models/product.model';
   templateUrl: './detail.product.component.html',
   styles: ``
 })
-export default class DetailProductComponent {
+export default class DetailProductComponent implements OnInit {
+
+  public product!: Observable<Product>;
+
+public readonly productId = input.required<number>();
+
+public ngOnInit() : void {
+  this.spinner.show();
+  setTimeout(() => {
+    this.spinner.hide();
+  }, 1000);
+  this.product = this.service.getProduct(this.productId());
+}
+
+// id du produit
     // injection des déppendances
     private service = inject(ProductService);
     private route = inject(ActivatedRoute);
     private spinner = inject(NgxSpinnerService);
     private cartService = inject(CartService);
   
-    // récupération de l'id du produit
-    id = this.route.snapshot.params['id'];
-    product$ = this.service.getProduct(this.id);
+    // // récupération de l'id du produit
+    // id = this.route.snapshot.params['id'];
+    // product$ = this.service.getProduct(this.id);
   
     // conversion de l'observable en signal
-    $product = toSignal(this.product$);
+    // $product = toSignal(this.product$);
 
     // methode qui ajoute un produit au panier
     addToCart(product: Product) {
       this.cartService.addToCart(product);
     }
-
-    ngOnInit(): void {
-      this.spinner.show();
-      // Simuler un délai de chargement
-      setTimeout(() => {
-        this.spinner.hide();
-      }, 1000);
-    }
-
 }

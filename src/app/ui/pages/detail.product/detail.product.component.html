@@ -10,7 +10,7 @@ type="square-jelly-box"
 </ngx-spinner>
 
 <section class="my-auto mt-4 pb-4 min-h-[50vh]">
-@if ($product(); as prod) {
+@if (product |async; as prod) {
     <app-box-content>
     <!--  menu fil d'Ariane pour naviguer dans l'application -->
     <div class="breadcrumbs text-sm mb-3">

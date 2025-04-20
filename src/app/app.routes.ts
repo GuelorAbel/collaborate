@@ -30,7 +30,7 @@ export const routes: Routes = [
         title: "VOTRE PANIER"
     },
     {
-        path: "detail-produit/:id",
+        path: "detail-produit/:productId",
         loadComponent: () => import('./ui/pages/detail.product/detail.product.component'),
         title: "DETAIL DU PRODUIT"
     }
